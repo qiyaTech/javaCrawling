@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:include="fragment/page::head(title=${title})" th:remove="tag"></div>
+</head>
+<body th:attr="data-page-type=${pageType}">
+<!--<div id="wrapper">-->
+
+        <div id="container" class="effect mainnav-lg">
+            <div th:include="include/newpage::header" th:remove="tag"></div>
+            <div class="boxed">
+
+                <!--===================================================-->
+                <div id="content-container">
+
+                </div>
+                <div th:include="include/newpage::mainnav" th:remove="tag"></div>
+            </div>
+        </div>
+
+        <div id="templateWrapper" style="display: none;"></div>
+        <script th:inline="javascript">
+            // parameter
+            var _env = [[${env}]];
+            var _pageTitle = [[${title}]];
+            var _entity = [[${entity}]];
+            var _action = [[${action}]];
+            var _objId = [[${objId}]];
+            var _searchFirst = [[${searchFirst}]];
+            // page
+            var _userName = [[${userName}]];
+            var _headImg = '/images/av1.png';
+            var _navBarMessage = {};
+            var _navBarNotifications = {};
+            var _navBarMega = {};
+//            	var _navMainMenuData = JSON.parse([[${_navMainMenuData}]]);
+            var _navMainMenuData = '';
+        </script>
+
+        <div th:include="fragment/page::footerInclude(jsFile=${jsFile})" th:remove="tag"></div>
+
+<!--</div>-->
+</body>
+</html>

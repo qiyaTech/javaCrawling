@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ] -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet"/>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="css/css/bootstrap.min.css" rel="stylesheet"/>
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="css/css/nifty.min.css" rel="stylesheet"/>
+
+
+    <!--Font Awesome [ OPTIONAL ]-->
+    <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="css/css/demo/nifty-demo.min.css" rel="stylesheet"/>
+
+
+    <link rel="stylesheet" href="plugins/bootstrap-validator/bootstrapValidator.min.css" />
+
+    <!--SCRIPT-->
+    <!--=================================================-->
+
+    <!--Page Load Progress Bar [ OPTIONAL ]-->
+    <link href="plugins/pace/pace.min.css" rel="stylesheet"/>
+    <script src="plugins/pace/pace.min.js"></script>
+
+
+
+    <!--
+
+    REQUIRED
+    You must include this in your project.
+
+    RECOMMENDED
+    This category must be included but you may modify which plugins or components which should be included in your project.
+
+    OPTIONAL
+    Optional plugins. You may choose whether to include it in your project or not.
+
+    DEMONSTRATION
+    This is to be removed, used for demonstration purposes only. This category must not be included in your project.
+
+    SAMPLE
+    Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
+
+
+    Detailed information and more samples can be found in the document.
+
+    -->
+
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+
+<body>
+<div id="container" class="cls-container">
+
+    <!-- BACKGROUND IMAGE -->
+    <!--===================================================-->
+    <div id="bg-overlay" class="bg-img img-balloon"></div>
+
+
+    <!-- HEADER -->
+    <!--===================================================-->
+    <div class="cls-header cls-header-lg">
+        <div class="cls-brand">
+            <a class="box-inline" href="#">
+                 <img alt="logo" src="/img/logo.png" class="brand-icon"/>
+                <span class="brand-title"><span class="text-thin">运营管理平台</span></span>
+            </a>
+        </div>
+    </div>
+    <!--===================================================-->
+
+
+    <!-- LOGIN FORM -->
+    <!--===================================================-->
+    <div class="cls-content">
+        <div class="cls-content-sm panel">
+            <div class="panel-body">
+                <p class="pad-btm">登录</p>
+                <form th:action="@{/login}" method="post" id="Login_Form" name="Login_Form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div style="color: red;margin-bottom: 5px;" th:if="${param.error}">
+                                用户名或密码错误
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            <input type="text" class="form-control"  id="phone"  name="phone"  placeholder="用户名"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="密码"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 text-left checkbox">
+                            <!--<label class="form-checkbox form-icon ">-->
+                                <!--<input type="checkbox"> Remember me-->
+                            <!--</label>-->
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group text-right">
+                                <button class="btn btn-warning text-uppercase" id="login" type="submit">登录</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+        <!--<div class="pad-ver">-->
+            <!--<a href="pages-password-reminder.html" class="btn-link mar-rgt">Forgot password ?</a>-->
+            <!--<a href="pages-register.html" class="btn-link mar-lft">Create a new account</a>-->
+        <!--</div>-->
+    </div>
+    <!--===================================================-->
+
+
+
+
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+
+
+
+<!--JAVASCRIPT-->
+<!--=================================================-->
+
+<!--jQuery [ REQUIRED ]-->
+<script src="js/lib/jquery-2.1.1.min.js"></script>
+
+
+<!--BootstrapJS [ RECOMMENDED ]-->
+<script src="js/lib/bootstrap.min.js"></script>
+
+
+<!--Fast Click [ OPTIONAL ]-->
+<script src="plugins/fast-click/fastclick.min.js"></script>
+
+<script src="plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+
+<!--Nifty Admin [ RECOMMENDED ]-->
+<script src="js/lib/nifty.min.js"></script>
+
+<script>
+    $(function(){
+        var $login = $("#login");
+        var faIcon = {
+            valid: 'fa fa-check-circle fa-lg text-success',
+            invalid: 'fa fa-times-circle fa-lg',
+            validating: 'fa fa-refresh'
+        }
+
+        $('#Login_Form').bootstrapValidator({
+            message: '登录账户不存在',
+            feedbackIcons: faIcon,
+            fields: {
+                phone: {
+                    message: '账户不能为空',
+                    validators: {
+                        notEmpty: {
+                            message: '账户不能为空'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空'
+                        }
+                    }
+                },submitHandler : function(form) {
+                    alert(1)
+                    $(form).submit();
+                }
+            }
+        });
+        $login.on("submit",function(){
+            $('#Login_Form').bootstrapValidator('validate',true);
+        })
+    })
+</script>
+
+
+</body>
+</html>

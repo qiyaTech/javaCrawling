@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--首页-->
+<div th:replace="include/newheader::header"></div>
+<head>
+    <meta charset="UTF-8"/>
+    <title>运营管理系统</title>
+
+    <!--<link rel="stylesheet" type="text/css" href="/css/index.css"/>-->
+
+    <!--<script src="/js/pagejs/index.js"></script>-->
+</head>
+<body>
+<div id="container" class="effect mainnav-lg">
+
+
+    <div th:include="include/newpage::header" th:remove="tag"></div>
+
+    <div class="boxed">
+
+        <!--内容-->
+        <div id="content-container">
+            <div id="page-content">
+                <h3>对不起,您没有权限访问此页面!</h3>
+            </div>
+        </div>
+        <!--菜单-->
+        <div th:include="include/newpage::mainnav" th:remove="tag"></div>
+    </div>
+</div>
+
+</body>
+<!--js-->
+<div th:replace="include/newheader::foot"></div>
+</html>

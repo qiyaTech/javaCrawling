@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--首页-->
+<div th:replace="include/newheader::header"></div>
+<head>
+    <meta charset="UTF-8"/>
+    <title>爬虫</title>
+
+    <!--<link rel="stylesheet" type="text/css" href="/css/index.css"/>-->
+
+    <!--<script src="/js/pagejs/index.js"></script>-->
+</head>
+<body>
+<div id="container" class="effect mainnav-lg">
+
+
+    <div th:include="include/newpage::header" th:remove="tag"></div>
+
+    <div class="boxed">
+
+        <!--内容-->
+        <div id="content-container">
+
+        </div>
+        <!--菜单-->
+        <div th:include="include/newpage::mainnav" th:remove="tag"></div>
+    </div>
+</div>
+
+</body>
+<!--js-->
+<div th:replace="include/newheader::foot"></div>
+</html>

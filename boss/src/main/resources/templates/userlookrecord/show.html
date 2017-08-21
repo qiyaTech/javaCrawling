@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--首页-->
+<div th:replace="include/newheader::header"></div>
+<head>
+    <meta charset="UTF-8"/>
+    <title>运营管理系统</title>
+
+    <!--<link rel="stylesheet" type="text/css" href="/css/index.css"/>-->
+
+    <!--<script src="/js/pagejs/index.js"></script>-->
+    <style type="text/css">
+        .pointer{
+            cursor: pointer;
+        }
+
+        .textBorder{
+            text-decoration: underline;
+            color: blue;
+        }
+    </style>
+
+</head>
+<body>
+<div id="container" class="effect mainnav-lg">
+
+
+    <div th:include="include/newpage::header" th:remove="tag"></div>
+    <iframe src="" frameborder="0" style="display:none;" id="hidden_iframe" ></iframe>
+
+    <div class="boxed">
+
+        <!--内容-->
+        <div id="content-container">
+            <div id="page-content">
+                <div class="row">
+                    <div class="col-md-12" >
+
+                        <div class="panel" style="margin-bottom: 0px;">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#collapseSelect" ><h3 class="panel-title" >用户行为分析汇总报表</h3> </a>
+                            </div>
+                            <div id="collapseSelect" class="panel-body panel-collapse collapse in" style="padding: 5px 5px 5px 5px;margin: 10px 0px 0px 10px;">
+                                <form class="form-horizontal">
+                                    <div class="row">
+                                        <div class="col-md-6" >
+                                            <div class="form-group ">
+                                                <div class="col-md-3 text-right">
+                                                    <label class="control-label ">站点：</label>
+                                                </div>
+                                                <div  class="col-md-7 text-left">
+                                                    <select class="selectpicker" id="site" data-width="100%">
+                                                        <option value="0">--请选择--</option>
+                                                        <option th:each="site:${siteList}" th:value="${site.id}" th:text="${site.siteNick}"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="col-md-3 text-right">
+                                                    <label class="control-label ">平台：</label>
+                                                </div>
+                                                <div  class="col-md-7 text-left">
+                                                    <select class="selectpicker" id="platform" data-width="100%">
+                                                        <option value="0">--请选择--</option>
+                                                        <option th:each="source:${sourceList}" th:value="${source.value}" th:text="${source.name}"></option>
+                                                        <!--<option value="1">APP</option>-->
+                                                        <!--<option value="2">wechat</option>-->
+                                                        <!--<option value="3">web</option>-->
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer text-right" >
+                                        <button class="btn btn-info" type="button"  id="searchbtn">
+                                            <span class="glyphicon glyphicon-search"></span>查询
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 主题内容-->
+                    <div class="col-md-12" style="margin: 0;">
+                        <div class="panel">
+                            <div class="panel-heading" style="height: 5px;padding-left: 20px;">
+                                <button id="export" class="btn btn btn-primary"><span class="glyphicon glyphicon-plus"></span>导出</button>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-toolbar-left" style="margin-left: 5px;">
+                                </div>
+
+                                <table id="main-tables" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--菜单-->
+        <div th:include="include/newpage::mainnav" th:remove="tag"></div>
+    </div>
+</div>
+
+</body>
+<!--js-->
+<div th:replace="include/newheader::foot"></div>
+<script src="/js/pagejs/userlookrecord/show.js"></script>
+</html>

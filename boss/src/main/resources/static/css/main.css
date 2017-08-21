@@ -1,0 +1,91 @@
+/*.page-content-padding {*/
+    /*padding: 0;*/
+    /*margin: 0px 0px 0px 0px;*/
+/*}*/
+
+/*.panel-padding {*/
+    /*margin-bottom: 0px;*/
+/*}*/
+
+/*.panel-body-padding {*/
+    /*padding: 5px 5px 5px 5px;*/
+    /*margin: 10px 0px 0px 10px;*/
+/*}*/
+
+/*.span6 {*/
+    /*overflow: hidden;*/
+    /*display: inline;*/
+/*}*/
+
+/*.span6 label, .span6 input, .span6 textarea {*/
+    /*display: inline-block;*/
+/*}*/
+
+/*.span6 label, .span6 textarea {*/
+    /*display: inline-block;*/
+/*}*/
+
+/*.span6 input {*/
+    /*width: 70%;*/
+    /*margin-left: 3%;*/
+/*}*/
+
+/*.span6 textarea {*/
+    /*width: 70%;*/
+    /*margin-left: 3%;*/
+/*}*/
+
+.table th {
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+/*.modal-backdrop {*/
+    /*z-index: -1;*/
+/*}*/
+
+/*#page-content {*/
+    /*padding: 0;*/
+    /*margin: 0px 0px 0px 0px;*/
+/*}*/
+
+/*.searchpadding {*/
+    /*margin-bottom: 0px;*/
+/*}*/
+
+/*.searchcontent {*/
+    /*padding: 5px 5px 5px 5px;*/
+    /*margin: 10px 0px 0px 10px;*/
+/*}*/
+
+.form-group.required .control-label:before {
+    content:"*";
+    color:red;
+}
+
+td.details-control {
+    background: url('../img/table-add-icon.png') no-repeat center center;
+    background-size:15px 15px;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../img/table-add-icon.png') no-repeat center center;
+    background-size:15px 15px;
+}
+
+/*.modal{*/
+    /*display: block !important; !* I added this to see the modal, you don't need this *!*/
+/*}*/
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    overflow-y: auto;
+}
+
+.dt_col_hide{display: none;}

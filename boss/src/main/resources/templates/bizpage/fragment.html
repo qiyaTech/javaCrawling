@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--首页-->
+<div th:replace="include/newheader::header"></div>
+<head>
+    <meta charset="UTF-8"/>
+    <title>运营管理系统</title>
+
+    <!--<link rel="stylesheet" type="text/css" href="/css/index.css"/>-->
+
+    <!--<script src="/js/pagejs/index.js"></script>-->
+</head>
+<body>
+
+<div th:fragment="appointment">
+    <div id="appointmentinfo" >
+        <h4>预约信息：</h4>
+        <hr style="margin-top:0;"/>
+        <div class="row">
+            <div class="col-md-6">
+                <!--<div class="row">-->
+                <div class="col-md-4 text-right">
+                    <span class="text-right">门店名称:</span>
+                </div>
+                <div class="col-md-8 text-left">
+                    <span th:text="${bizModel.apartmentName}"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-4 text-right">
+                    <span class="text-right">预约看房时间:</span>
+                </div>
+                <div class="col-md-8 text-left">
+                    <span><span th:text="${bizModel.appointmentDate}"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4 text-right">
+                    <span class="text-right">联系人:</span>
+                </div>
+                <div class="col-md-8 text-left">
+                    <span th:text="${bizModel.userName}"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4 text-right">
+                    <span class="text-right">联系电话:</span>
+                </div>
+                <div class="col-md-8 text-left">
+                    <span th:text="${bizModel.mobile}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4 text-right">
+                    <span class="text-right">备注:</span>
+                </div>
+                <div class="col-md-8 text-left">
+                    <span th:text="${bizModel.remarks}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--首页-->
+<div th:replace="include/newheader::header"></div>
+<head>
+    <meta charset="UTF-8"/>
+    <title>规则配置</title>
+
+</head>
+<body>
+<div id="container" class="effect mainnav-lg">
+
+
+    <div th:include="include/newpage::header" th:remove="tag"></div>
+
+    <div class="boxed">
+
+        <!--内容-->
+        <div id="content-container">
+            <div id="page-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel" style="margin-bottom: 0px;">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" href="#collapseSelect"><h3 class="panel-title">规则配置</h3></a>
+                            </div>
+                            <div id="collapseSelect" class="panel-body panel-collapse collapse in"
+                                 style="padding: 5px 5px 5px 5px;margin: 10px 0px 0px 10px;">
+                                <form class="form-horizontal">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <div class="col-md-3 text-right">
+                                                    <label class="control-label ">网站名称：</label>
+                                                </div>
+                                                <div class="col-md-7 text-left">
+                                                    <input id="txt_search_name" type="text" class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer text-right">
+                                        <button class="btn btn-info" type="button" id="searchbtn">
+                                            <span class="glyphicon glyphicon-search"></span>搜索
+                                        </button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 主题内容-->
+
+                    <div class="col-md-12" style="margin: 0;">
+                        <div class="panel">
+                            <div class="panel-heading" style="height: 5px;">
+
+
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-toolbar-left" style="margin-left: 5px;">
+                                    <button class="btn btn-primary btn-labeled fa fa-plus " id="btn_main_add">新增</button>
+                                </div>
+
+
+                                <table id="main-tables" class="table table-striped table-bordered nowrap" cellspacing="0"
+                                       width="100%">
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--菜单-->
+        <div th:include="include/newpage::mainnav" th:remove="tag"></div>
+    </div>
+</div>
+
+<!-- 添加-->
+<!--===================================================-->
+<div class="modal" id="addmodal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!--Modal header-->
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">添加</h4>
+            </div>
+            <!--Modal body-->
+            <div class="modal-body" style="height:450px;overflow:auto;">
+
+                <div class="row form-horizontal">
+
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">处理器:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <select id="sel_process" class="selectpicker" data-width="100%">
+                                    <option value="">请选择</option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">网站名称:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_name" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-horizontal">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">目标地址:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_target_url" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">域名:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_domain" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-horizontal">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">列表页:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_detail_url" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">列表明细xpath:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_list_xpath" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-horizontal">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">输出配置:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <select id="pipe-multiselect" multiple="" data-placeholder="选择输出配置" tabindex="4" data-width="65%">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-md-6">-->
+                        <!--<div class="form-group required">-->
+                            <!--<div class="col-md-3 text-right">-->
+                                <!--<label class="control-label ">列表明细xpath:</label>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-9 text-left">-->
+                                <!--<input id="txt_domain" type="text" class="form-control"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#parameone" data-toggle="tab">
+                            爬取元素
+                        </a>
+                    </li>
+                    <li><a href="#parametwo" data-toggle="tab">头部信息</a></li>
+                </ul>
+
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="parameone">
+                        <div class="table-toolbar-left" style="margin-top: 5px;">
+                            <!--<button class="btn btn-primary btn-labeled fa fa-plus" data-target='#addelementmodal' data-toggle='modal'>添加-->
+                            <!--</button>-->
+                        </div>
+
+                        <table id="element-tables" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+
+                        </table>
+                    </div>
+                    <div class="tab-pane fade  " id="parametwo">
+                        <div class="table-toolbar-left" style="margin-top: 5px;">
+                            <button   class="btn btn-primary btn-labeled fa fa-plus"  id="tab_btn_header_add">添加
+                            </button>
+                        </div>
+
+                        <table id="header-tables" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button  class="btn btn-primary" type="button" id="btn_add">增加</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===================================================-->
+
+
+<!-- 添加头部-->
+<!--===================================================-->
+<div class="modal" id="addheadermodal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel2"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--Modal header-->
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">添加头部</h4>
+            </div>
+            <!--Modal body-->
+            <div class="modal-body" style="overflow:auto;">
+
+                <div class="row form-horizontal">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">类型:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <select id="sel_header_type" class="selectpicker" data-width="100%">
+                                    <option value="">请选择</option>
+                                    <option value="header">header</option>
+                                    <option value="cookie">cookie</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-md-6">-->
+                    <!--<div class="form-group ">-->
+                    <!--<div class="col-md-3 text-right">-->
+                    <!--<label class="control-label ">值:</label>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-9 text-left">-->
+                    <!--<input id="txt_header_value" type="text" class="form-control"/>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+
+                <div class="row form-horizontal">
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">名称:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_header_name" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">值:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_header_value" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-primary" type="button" id="btn_addheader">添加</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===================================================-->
+
+<!-- 添加元素-->
+<!--===================================================-->
+<div class="modal" id="addelementmodal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel3"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--Modal header-->
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel3">添加元素</h4>
+            </div>
+            <!--Modal body-->
+            <div class="modal-body" style="overflow:auto;">
+                <div class="row form-horizontal">
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">名称:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_element_name" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <div class="col-md-3 text-right">
+                                <label class="control-label ">值:</label>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <input id="txt_element_value"  type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-primary" type="button" id="btn_addelement">添加</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===================================================-->
+
+
+</body>
+<!--js-->
+<div th:replace="include/newheader::foot"></div>
+<script src="/js/pagejs/ruleconfig/ruleconfig.js"></script>
+</html>

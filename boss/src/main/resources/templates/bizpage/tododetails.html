@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--首页-->
+<div th:replace="include/newheader::header"></div>
+<head>
+    <meta charset="UTF-8"/>
+    <title>运营管理系统</title>
+
+    <!--<link rel="stylesheet" type="text/css" href="/css/index.css"/>-->
+
+    <!--<script src="/js/pagejs/index.js"></script>-->
+</head>
+<body>
+<div id="container" class="effect mainnav-lg">
+
+
+    <div th:include="include/newpage::header" th:remove="tag"></div>
+
+    <div class="boxed">
+
+        <!--内容-->
+        <div id="content-container">
+            <div id="page-content">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="panel" style="margin-bottom: 0px;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">预约看房--<span th:text="${type=='appointment'}"></span></h3>
+                            </div>
+                            <div class="panel-body searchcontent">
+                                <!--<div id="appointmentinfo" th:if="${type=='appointment'}">-->
+                                    <!--<h4>预约信息：</h4>-->
+                                    <!--<hr style="margin-top:0;"/>-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-6">-->
+                                            <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+                                            <!--<div class="col-md-4 text-right">-->
+                                                <!--<span class="text-right">门店名称:</span>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-8 text-left">-->
+
+                                                <!--<span th:text="${bizModel.apartmentName}"></span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="col-md-6">-->
+                                            <!--<div class="col-md-4 text-right">-->
+                                                <!--<span class="text-right">预约看房时间:</span>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-8 text-left">-->
+                                                <!--<span><span th:text="${bizModel.appointmentDate}"></span></span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-6">-->
+                                            <!--<div class="col-md-4 text-right">-->
+                                                <!--<span class="text-right">联系人:</span>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-8 text-left">-->
+                                                <!--<span th:text="${bizModel.userName}"></span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="col-md-6">-->
+                                            <!--<div class="col-md-4 text-right">-->
+                                                <!--<span class="text-right">联系电话:</span>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-8 text-left">-->
+                                                <!--<span th:text="${bizModel.mobile}"></span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-6">-->
+                                            <!--<div class="col-md-4 text-right">-->
+                                                <!--<span class="text-right">备注:</span>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-8 text-left">-->
+                                                <!--<span th:text="${bizModel.remarks}"></span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div th:include="bizpage/fragment::${type}"></div>
+                                <h4>处理信息：</h4>
+                                <hr style="margin-top:0;"/>
+                                <form>
+                                    <div class="row">
+
+
+                                        <div class="col-md-2  text-right">
+                                            <span>处理人:</span>
+                                        </div>
+                                        <div class="col-md-10 text-left">
+                                            <span>xxxx</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2 text-right">
+                                            <div class="form-group ">
+                                                <label class="control-label">处理备注:</label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10 text-left">
+                                            <div class="form-group ">
+                                                <textarea rows="6" class="form-control" placeholder=""></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer text-left">
+                                        <button class="btn btn-primary" type="submit">提交</button>
+                                        <a class="btn btn-info" href="/todo" type="submit">返回</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--菜单-->
+        <div th:include="include/newpage::mainnav" th:remove="tag"></div>
+    </div>
+</div>
+
+</body>
+<!--js-->
+<div th:replace="include/newheader::foot"></div>
+<script src="/js/pagejs/todo/index.js"></script>
+</html>

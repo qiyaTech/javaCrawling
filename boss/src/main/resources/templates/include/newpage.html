@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html ng-app="fishTankApp" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <title></title>
+</head>
+<body>
+<!-- Navigation -->
+<div th:fragment="header">
+
+    <!--NAVBAR-->
+    <!--===================================================-->
+    <header id="navbar">
+        <div id="navbar-container" class="boxed">
+
+            <!--Brand logo & name-->
+            <!--================================-->
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">
+                    <!--<img src="/img/logo.png" alt="yazhu Logo"  class="brand-icon" style="padding: 5px;"/>-->
+                    <div class="brand-title">
+                        <span class="brand-text">管理平台</span>
+                    </div>
+                </a>
+            </div>
+            <!--================================-->
+            <!--End brand logo & name-->
+
+
+            <!--Navbar Dropdown-->
+            <!--================================-->
+            <div class="navbar-content clearfix">
+                <ul class="nav navbar-top-links pull-left">
+
+                    <!--Navigation toogle button-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <li class="tgl-menu-btn">
+                        <a class="mainnav-toggle" href="#">
+                            <i class="fa fa-navicon fa-lg"></i>
+                        </a>
+                    </li>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End Navigation toogle button-->
+
+
+                </ul>
+                <ul class="nav navbar-top-links pull-right">
+
+
+
+
+                    <!--User dropdown-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <li id="dropdown-user" class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+								<span class="pull-right">
+									<img class="img-circle img-user media-object" src="/img/av1.png" alt="Profile Picture"/>
+								</span>
+                            <div class="username hidden-xs">
+                                <span th:text="${adminName}"></span>
+                                <input type="hidden" id = "adminPhone" th:value="${adminPhone}" />
+                            </div>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
+
+
+
+
+                            <!-- User dropdown menu -->
+                            <ul class="head-list">
+                                <li>
+                                    <a style="cursor: pointer" class="pwdUpdate">
+                                        <i class="fa fa-user fa-fw fa-lg"></i> 修改密码
+                                    </a>
+                                </li>
+                                <!--<li>-->
+                                    <!--<a th:href="@{/userManage}">-->
+                                        <!--<i class="fa fa-user fa-fw fa-lg"></i> 用户管理-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="#">-->
+
+                                        <!--<i class="fa fa-envelope fa-fw fa-lg"></i> 设置-->
+                                    <!--</a>-->
+                                <!--</li>-->
+
+                            </ul>
+
+                            <!-- Dropdown footer -->
+                            <div class="pad-all text-right">
+                                <a th:href="@{/logout}" class="btn btn-primary">
+                                    <i class="fa fa-sign-out fa-fw"></i> 退出
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End user dropdown-->
+
+                </ul>
+            </div>
+            <!--================================-->
+            <!--End Navbar Dropdown-->
+        </div>
+        <div class="modal fade" id="editPwdModal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            修改密码
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>用户名</label><span id="nameErr" class="msg"></span>
+                                <input type="text" readonly="readonly" class="form-control" id="name" th:value="${adminName}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>手机号</label><span id="phoneErr" class="msg"></span>
+                                <input type="text" readonly="readonly" class="form-control" id="phone" th:value="${adminPhone}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>原密码</label>
+                                <input type="password" class="form-control" id="oldPassword"
+                                       placeholder="请输入原密码"/>
+                            </div>
+                            <div class="form-group">
+                                <label>新密码</label>
+                                <input type="password" class="form-control" id="password"
+                                       placeholder="请输入新密码"/>
+                            </div>
+                            <div class="form-group">
+                                <label>确认密码</label>
+                                <input type="password" class="form-control" id="rePassword"
+                                       placeholder="请再次输入密码"/>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">取消
+                        </button>
+                        <button id="editPwdSubmit" type="button" class="btn btn-primary">
+                            确定
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </header>
+
+</div>
+<div th:fragment="mainnav">
+    <nav id="mainnav-container">
+        <div id="mainnav">
+
+            <!--Shortcut buttons-->
+            <!--================================-->
+            <div id="mainnav-shortcut">
+            </div>
+            <!--================================-->
+            <!--End shortcut buttons-->
+
+            <!--Menu-->
+            <!--================================-->
+            <div id="mainnav-menu-wrap">
+                <div class="nano">
+                    <div class="nano-content">
+                        <ul id="mainnav-menu" class="list-group">
+
+                            <!--<li th:each="m:${menu}" >-->
+                            <!--<a href="#"><i class="fa fa-wrench fa-fw"></i>-->
+                            <!--<span class="fa arrow"></span></a>-->
+                            <!--<ul class="nav nav-second-level" th:if="${m.children} != null">-->
+                            <!--<li th:each="child:${m.children}">-->
+                            <!--<a th:id="${child.code}" th:href="@{'/'+${child.url}}"><span th:text="${child.name}"></span></a>-->
+                            <!--</li>-->
+                            <!--</ul>-->
+                            <!--</li>-->
+                            <!--Menu list item-->
+                            <li  data-level="1" th:each="m:${menu}">
+                                <a href="#">
+                                    <i class="fa fa-th"></i>
+                                    <span class="menu-title"> <span th:text="${m.name}"></span></span>
+                                    <i class="arrow"></i>
+                                </a>
+
+                                <!--Submenu-->
+                                <ul class="collapse"  th:if="${m.children} != null">
+                                    <li   data-level="2" th:each="child:${m.children}">
+                                        <a th:id="${child.code}" th:href="@{'/'+${child.url}}"><span th:text="${child.name}"></span></a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                        </ul>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!--================================-->
+            <!--End menu-->
+
+        </div>
+    </nav>
+    <!--<script th:inline="javascript">-->
+        <!--var locateMenu = function () {-->
+            <!--var $nav = $("#mainnav-menu");-->
+            <!--var links = $nav.find("a");-->
+            <!--$nav.find("li").removeClass("active-link").removeClass("active").removeClass("active-sub");-->
+            <!--var url = window.location.href;-->
+            <!--$.each(links, function (i, link) {-->
+                <!--var $link = $(link);-->
+                <!--var thisUrl = $link.attr("href").replace("./", "").replace("../", "");-->
+                <!--if (url.indexOf(thisUrl) > -1) {-->
+                    <!--switch (parseInt($link.parent().attr("data-level"))) {-->
+                        <!--case 1:-->
+                            <!--$link.parent().addClass("active-sub");-->
+                            <!--break;-->
+                        <!--case 2:-->
+                            <!--$link.parent().addClass("active-link");-->
+                            <!--$link.parent().parent().parent().addClass("active-sub active");-->
+                            <!--break;-->
+                        <!--default:-->
+                            <!--break;-->
+                    <!--}-->
+                <!--}-->
+            <!--});-->
+        <!--};-->
+        <!--locateMenu();-->
+    <!--</script>-->
+
+</div>
+
+
+
+
+
+
+
+
+<!-- 模态框  提示信息（Modal） -->
+<div th:fragment="alertModal">
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        提示信息
+                    </h4>
+                </div>
+                <div class="modal-body" id="alertInfo" style="text-align: center;">
+                    操作成功!
+                </div>
+                <div class="modal-footer">
+                    <button id="alertCancel" style="display: none;" type="button" class="btn btn-default"
+                            data-dismiss="modal">取消
+                    </button>
+                    <button id="alertSure" type="button" class="btn btn-primary" data-dismiss="modal" >
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+</body>
+</html>

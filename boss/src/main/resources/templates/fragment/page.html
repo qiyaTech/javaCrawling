@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="head(title)">
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--nifty的css文件 start-->
+    <link href="http://wl.swao.cn/heitu/nifty/css/fonts-googleapis-open-sans.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/css/nifty.min.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/switchery/switchery.min.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/dropzone/dropzone.css" rel="stylesheet"/>
+    <!--nifty的css文件 end-->
+    <!--百度编辑器 start-->
+    <link href="http://apps.bdimg.com/libs/ueditor/1.4.3.1/themes/default/css/ueditor.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/plugin/baiduWebuploader/webuploader.css" rel="stylesheet"/>
+    <!--百度编辑器 end-->
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/css/demo/nifty-demo.min.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/nifty/plugins/pace/pace.min.css" rel="stylesheet"/>
+    <link href="http://wl.swao.cn/heitu/css/main.css" rel="stylesheet"/>
+    <!--<link rel="stylesheet" type="text/css" href="/css/index.css"/>-->
+
+
+    <!--nifty的css文件  end*************-->
+    <script src="http://wl.swao.cn/heitu/nifty/plugins/pace/pace.min.js"></script>
+</div>
+
+<div th:fragment="footerInclude(jsFile)">
+<script type="text/javascript" src="http://wl.swao.cn/qipan/lib/artTemplate/template-native.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/js/jquery-2.1.1.min.js"></script>
+<script src="http://wl.swao.cn/qipan/lib/backbone/underscore.js"></script>
+<script src="http://wl.swao.cn/qipan/lib/moment/moment.js"></script>
+<script src="http://wl.swao.cn/qipan/lib/moment/moment-with-locales.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://wl.swao.cn/qipan/lib/moment/moment.js"></script>
+<script type="text/javascript" src="http://wl.swao.cn/qipan/lib/moment/moment-with-locales.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/fast-click/fastclick.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/switchery/switchery.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/dropzone/dropzone.min.js"></script>
+<script src="http://ueditor.baidu.com/ueditor/ueditor.config.js"></script>
+<script src="http://wl.swao.cn/heitu/plugin/baiduUeditor/ueditor.all.js"></script>
+<script src="http://ueditor.baidu.com/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="http://wl.swao.cn/heitu/plugin/baiduWebuploader/webuploader.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/bootbox/bootbox.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/datatables/media/js/jquery.dataTables.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+
+<!--初始化html的js，必须优先于nifty-js.min.js执行-->
+<script src="http://wl.swao.cn/qipan/utils.js"></script>
+<script src="http://wl.swao.cn/heitu/framework/commonDefine.js"></script>
+<script src="/js/appjs/heituTemplate.js"></script>
+<!--<script src="http://wl.swao.cn/heitu/framework/heituTemplate.js"></script>-->
+<!--<script src="http://wl.swao.cn/heitu/framework/utils.js"></script>-->
+    <script src="/js/appjs/framework-utils.js"></script>
+<script src="/js/appjs/huituconfig.js"></script>
+<script src="http://wl.swao.cn/heitu/framework/commonTemplate.js"></script>
+<script src="http://wl.swao.cn/heitu/framework/setData.js"></script>
+<script src="http://wl.swao.cn/heitu/framework/ctrl.js"></script>
+<!--<script src="http://wl.swao.cn/heitu/framework/framework.js"></script>-->
+<script src="/js/appjs/framework.js"></script>
+<!--<script src="http://wl.swao.cn/heitu/plugin/heituTable/heituTable.js"></script>-->
+<script src="/js/appjs/framework-heituTable.js"></script>
+<!--<script src="http://wl.swao.cn/heitu/plugin/heituToolbar/heituToolbar.js"></script>-->
+<script src="/js/appjs/framework-heituToolbar.js"></script>
+
+<!--自定义-->
+<script src="/js/appjs/config.js"></script>
+<script src="http://wl.swao.cn/heitu/framework/mainMenu.js"></script>
+<script th:src="${jsFile}"></script>
+<!--自定义结束-->
+
+<script src="http://wl.swao.cn/heitu/nifty/js/nifty.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/js/demo/nifty-demo.min.js"></script>
+<script src="http://wl.swao.cn/heitu/nifty/js/demo/layouts.js"></script>
+    <script src="/js/pagejs/index.js"></script>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular/angular-route.min.js"></script>
+    <script src="/bower_components/angular/angular-resource.min.js"></script>
+    <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+</div>
+</body>
+</html>

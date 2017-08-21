@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html ng-app="fishTankApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>角色管理</title>
+
+    <div th:replace="include/newheader::header" th:remove="tag"></div>
+    <link rel="stylesheet" type="text/css" href="/css/treeGrid.css"/>
+    <script src="/js/pagejs/resourceManage/resourceManage.js"></script>
+    <script src="/js/pagejs/resourceManage/addResource.js"></script>
+    <script src="/js/pagejs/resourceManage/updateResource.js"></script>
+    <script src="/js/pagejs/resourceManage/deleteResource.js"></script>
+
+
+    <script src="/js/appjs/app.js"></script>
+    <script src="/js/appjs/tree-grid-directive.js"></script>
+    <script src="/js/appjs/resourceController.js"></script>
+
+</head>
+<body>
+
+
+
+<div id="container" class="effect mainnav-lg">
+
+    <!-- Navigation -->
+    <div th:include="include/newpage::header" th:remove="tag"></div>
+
+    <div class="boxed">
+
+        <!--===================================================-->
+        <div id="content-container" ng-controller="treeGridCtrl">
+
+            <div th:fragment="resourceManage">
+                <div id="page-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        菜单信息
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <button id="addRes" class="btn btn btn-primary" data-toggle='modal' data-target='#resAddModal'><span class="glyphicon glyphicon-plus"></span>添加</button>
+                                    <button id="resEditBtn" class="btn  btn-primary"><span class="glyphicon glyphicon-edit"></span>修改</button>
+                                    <button id="resDelBtn" class="btn  btn-primary"><span class="glyphicon glyphicon-remove"></span>删除</button>
+                                    <div id="resTreeGrid" style="margin-top: 5px;">
+
+                                    </div>
+
+                                    <div>
+                                        <input type="text" style="display: none;" id="resChange" ng-model="word" ng-change="resChanges()"/>
+                                        <input type="hidden" id="selectResId" value="{{resId}}"/>
+                                        <input type="hidden" id="selectCode" value="{{code}}"/>
+                                        <input type="hidden" id="selectName" value="{{name}}"/>
+                                        <input type="hidden" id="selectUrl" value="{{url}}"/>
+                                        <input type="hidden" id="selectFatherId" value="{{fatherId}}"/>
+                                        <input type="hidden" id="selectFatherName" value="{{fatherName}}"/>
+                                        <input type="hidden" id="selectChild" value="{{child}}"/>
+                                        <input type="hidden" id="selectOrderNum" value="{{orderNum}}"/>
+                                        <tree-grid tree-data="tree_data" tree-control="my_tree" col-defs="col_defs" expand-on="expanding_property" on-select="my_tree_handler(branch)" expand-level="2" icon-leaf= "glyphicon glyphicon-file"></tree-grid>
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                <!-- 模态框（Modal） -->
+                <div class="modal fade" id="resEditModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                        data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    菜单信息修改
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" id="resId"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>名称</label><span id="nameMsg" class="msg"></span>
+                                        <input type="text"  class="form-control" id="name"
+                                               placeholder="请输入名称"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>菜单编号</label><span id="codeMsg" class="msg"></span>
+                                        <input type="text" readonly="readonly" class="form-control" id="code"
+                                               placeholder="请输入菜单编号"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>菜单链接</label>
+                                        <input type="text" class="form-control" id="url"
+                                               placeholder="请输入链接地址"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>父级菜单</label>
+                                        <input type="hidden" readonly="readonly" class="form-control" id="fatherId"/>
+                                        <input type="text" readonly="readonly" class="form-control" id="fatherName"/>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default"
+                                        data-dismiss="modal">取消
+                                </button>
+                                <button id="editResSubmit" type="button" class="btn btn-primary">
+                                    确定
+                                </button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <div class="modal fade" id="resAddModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                        data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h4 class="modal-title">
+                                    添加菜单
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>名称</label><span id="addNameMsg" class="msg"></span>
+                                        <input type="text" class="form-control" id="addName"
+                                               placeholder="请输入名称"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>菜单编号</label><span id="addCodeMsg" class="msg"></span>
+                                        <input type="text" class="form-control" id="addCode"
+                                               placeholder="请输入菜单编号"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>菜单链接</label>
+                                        <input type="text" class="form-control" id="addUrl"
+                                               placeholder="请输入链接地址"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>父级菜单</label>
+                                        <input type="hidden" readonly="readonly" class="form-control" id="addFatherId"/>
+                                        <input type="text" readonly="readonly" class="form-control" id="addFatherName"/>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer" ng-controller="treeGridCtrl">
+                                <button type="button" class="btn btn-default"
+                                        data-dismiss="modal">取消
+                                </button>
+                                <button id="addResSubmit" type="button" class="btn btn-primary">
+                                    确定
+                                </button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <!-- 模态框  提示信息（Modal） -->
+                <div th:include="include/newpage::alertModal" th:remove="tag"></div>
+
+            </div>
+
+        </div>
+        <div th:include="include/newpage::mainnav" th:remove="tag"></div>
+    </div>
+
+</div>
+
+
+</body>
+<div th:replace="include/newheader::foot" th:remove="tag"></div>
+</html>

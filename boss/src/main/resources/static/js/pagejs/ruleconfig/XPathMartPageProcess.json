@@ -1,0 +1,14 @@
+{
+  "id" : 1,
+  "elements" : "[{\"name\":\"title\",\"value\":\"\/\/div[@class='title-row']\/\/span[@class='title']\/text()\"},{\"name\":\"status\",\"value\":\"\/\/div[@class='title-row']\/\/span[@class='status']\/text()\"},{\"name\":\"money\",\"value\":\"\/\/div[@class='detail-row']\/\/span\/text()\"},{\"name\":\"type\",\"value\":\"\/\/div[@class='detail-row']\/\/span[2]\/text()\"},{\"name\":\"content\",\"value\":\"\/\/div[@class='description typo fold']\/\/p\"}]",
+  "headers" : "[{\"type\":\"header\",\"name\":\"User-Agent\",\"value\":\"Mozilla\/5.0 (Windows NT 6.3; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/47.0.2526.80 Safari\/537.36 Core\/1.47.516.400 QQBrowser\/9.4.8188.400\"},{\"type\":\"header\",\"name\":\"Accept\",\"value\":\"text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/webp,*\/*;q=0.8\"},{\"type\":\"header\",\"name\":\"Accept-Encoding\",\"value\":\"gzip, deflate, sdch\"},{\"type\":\"header\",\"name\":\"Accept-Language\",\"value\":\"zh-CN,zh;q=0.8\"},{\"type\":\"header\",\"name\":\"Connection\",\"value\":\"keep-alive\"},{\"type\":\"header\",\"name\":\"Referer\",\"value\":\"http:\/\/www.imooc.com\/\"}]",
+  "status" : 1,
+  "createtime" : "2017-01-05 14:09:49",
+  "targetUrl" : "https:\/\/mart.coding.net\/projects",
+  "processName" : "XPathMartPageProcess",
+  "domain" : "mart.coding.net",
+  "listXpath" : "\/\/div[@class='item-content']",
+  "detailUrl" : "https:\/\/mart\\.coding\\.net\/project\/\\d+",
+  "name" : "码市项目明细爬取",
+  "pipeNames" : "[\"mysqlMartPipeline\",\"consolePipeline\"]"
+}
